@@ -62,28 +62,19 @@ This document describes the comprehensive reference architecture for implementin
 ## Implementation Details
 
 ### Data Flow
-1. **Data Ingestion**: Import data into Snowflake from various sources
-2. **Data Preparation**: Cleanse and prepare data for analysis in Snowflake
-3. **Parallel Processing**:
-   - **Cortex ML**: Train and execute anomaly detection model
-   - **SPC Analysis**: Calculate control limits, process metrics, and statistical indicators
-4. **Results Aggregation**: Combine results from both analysis methods
-5. **Streamlit Visualization**: Display interactive dashboards with real-time insights
-
-### Features Implemented
-- **Anomaly Detection**: Cortex ML identifies unusual patterns and outliers in data
-- **Control Charts**: SPC analysis generates control limits and charts for process monitoring
-- **Real-time Dashboard**: Streamlit app provides interactive visualization of both analyses
-- **Statistical Metrics**: Includes capability and process stability metrics from SPC
-- **Alerting**: Identifies anomalies and out-of-control conditions
+1. **Data Ingestion**: Import sensor data into Snowflake from various sources
+2. **Data Preparation**: Prepare data for analysis in Snowflake
+3. **Cortex ML**: Train and execute anomaly detection model
+4. **SPC Analysis**: Calculate control limits and statistical indicators like rolling 1-hour window average and standard deviation of sensor data
+5. **Streamlit Visualization**: Display interactive dashboards with insights from the analysis
 
 ## Workflow
 
 1. **Data Ingestion**: Import necessary data into Snowflake from various sources.
-2. **Data Preparation**: Cleanse and prepare data for analysis using Snowflake SQL transformations.
+2. **Data Preparation**: Prepare data for analysis using Snowflake SQL transformations.
 3. **Dual Analysis**:
    - Train Cortex ML anomaly detection model based on prepared data
-   - Execute Statistical Process Control analysis to monitor process metrics
+   - Execute Statistical Process Control analysis to calculate control limits and statistical indicators
 4. **Results Processing**: Aggregate and process results from both analyses
 5. **Visualization**: Use Streamlit to create interactive dashboards displaying:
    - Anomaly detection results with confidence scores
@@ -91,4 +82,4 @@ This document describes the comprehensive reference architecture for implementin
    - Historical trends and real-time monitoring
 
 ## Conclusion
-This architecture successfully implements a comprehensive framework for advanced anomaly detection and process monitoring using Snowflake Cortex ML, Statistical Process Control analysis, and Streamlit visualization. The integration of both machine learning-based anomaly detection and statistical process control provides a robust solution for identifying and monitoring process deviations from multiple analytical perspectives. The Streamlit application delivers an intuitive interface for stakeholders to monitor and explore results in real-time.
+This architecture successfully implements a comprehensive framework for advanced anomaly detection and statistical process control using Snowflake Cortex ML, Statistical Process Control analysis, and Streamlit visualization. The integration of both machine learning-based anomaly detection and statistical process control provides a robust solution for identifying and monitoring process deviations from multiple analytical perspectives. The Streamlit application delivers an intuitive interface for stakeholders to monitor and explore results in real-time.
