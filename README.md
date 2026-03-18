@@ -9,7 +9,7 @@ The Manufacturing Sensor Anomaly Tracker project aims to monitor and analyze sen
 - Statistical Process Control Analysis of sensor data
 - Dashboard for visualizing the sensor data and anomalies using Streamlit.
 
-## Getting Started in Minutes
+## Getting Started
 1. Use the repository: `git clone https://github.com/snadukudy/sf_anomaly` as a reference to build the anomaly model, statistical process control and streamlit visualization in Snowflake data platform. 
 
 ## Contributing
