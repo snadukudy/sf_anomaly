@@ -75,11 +75,12 @@ This document describes the comprehensive reference architecture for implementin
 3. **Dual Analysis**:
    - Train Cortex ML anomaly detection model based on prepared data
    - Execute Statistical Process Control analysis to calculate control limits and statistical indicators
-4. **Results Processing**: Aggregate and process results from both analyses
+4. **Results Processing**: Process results from both analyses
 5. **Visualization**: Use Streamlit to create interactive dashboards displaying:
+   - Sensor variance over time
    - Anomaly detection results with confidence scores
    - SPC control charts and process capability metrics
-   - Historical trends and real-time monitoring
+   - Critical and warnings alerts to users
 
 ## Conclusion
 This architecture successfully implements a comprehensive framework for advanced anomaly detection and statistical process control using Snowflake Cortex ML, Statistical Process Control analysis, and Streamlit visualization. The integration of both machine learning-based anomaly detection and statistical process control provides a robust solution for identifying and monitoring process deviations from multiple analytical perspectives. The Streamlit application delivers an intuitive interface for stakeholders to monitor and explore results in real-time.
