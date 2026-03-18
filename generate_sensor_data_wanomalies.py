@@ -23,6 +23,6 @@ values[1100:1110] -= 25
 # 4. Create DataFrame
 df = pd.DataFrame({'TS': timestamps, 'VAL': values})
 
-# 5. Export to a CSV file named 'sensor_data_03_16_2026.csv'
-df.to_csv('sensor_data_03_16_2026.csv', index=False)
-print('Done generating sensor data and saved to sensor_data.csv')
+# 5. Export to a CSV file named 'sensor_data_03_17_2026.csv'
+df.to_csv('sensor_data_new_03_17_2026.csv', index=False)
+print('Done generating sensor data and saved to sensor_data_new_03_17_2026.csv')
