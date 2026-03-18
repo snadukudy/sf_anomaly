@@ -18,5 +18,5 @@ values = normal_pattern + noise
 df = pd.DataFrame({'TS': timestamps, 'VAL': values})
 
 # 4. Export to a CSV file named 'sensor_data_03_16_2026.csv'
-df.to_csv('sensor_data_03_16_2026.csv', index=False)
-print('Done generating sensor data and saved to sensor_data.csv')
+df.to_csv('sensor_data_history_normal_03_16_2026.csv', index=False)
+print('Done generating sensor data and saved to sensor_data_history_normal_03_16_2026.csv')
