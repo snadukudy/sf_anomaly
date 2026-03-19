@@ -1,4 +1,4 @@
--- 1. Setup sample history and today's sensor data
+-- 1. Setup sample history and new sensor data
 -- 3/16 is history sensor data to train the model (gold standard where the m/c is known to be healthy) 
 -- 3/17 is new sensor data
 
@@ -16,8 +16,15 @@ CREATE OR REPLACE TABLE SENSOR_DATA (
 
 -- select count(*) from sensor_data where DATE_TRUNC('DAY', TS) = '2026-03-16';
 
--- 2. Create the Anomaly Detection Model
--- This trains on 3/16 historical data to 'learn' normal patterns
+
+-- Snowflake Cortex is a fully managed AI and machine learning (ML) platform integrated within the Snowflake Data Cloud
+-- offering various capabilities to build AI applications and gain insights without moving data. 
+
+-- Cortex AI Functions (LLM Functions): These built-in SQL and Python functions allow users to perform AI tasks on 
+-- structured, semi-structured and unstructured data using industry-leading LLMs (e.g., OpenAI, Anthropic, Meta, Mistral AI, Google)
+
+-- 2. Creating the Anomaly Detection Model using SNOWFLAKE.ML.ANOMALY_DETECTION Cortex AI Function
+-- This trains on the 3/16 historical data to 'learn' normal patterns that includes some noise
 
 CREATE OR REPLACE SNOWFLAKE.ML.ANOMALY_DETECTION ANOMALIES.PUBLIC.ANOMALY_MODEL(
     INPUT_DATA => TABLE(SELECT TS, VAL FROM SENSOR_DATA WHERE DATE_TRUNC('DAY', TS) = '2026-03-16'),
