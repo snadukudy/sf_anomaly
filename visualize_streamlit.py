@@ -1,8 +1,9 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
 import pandas as pd
 import altair as alt
+# Python import used to retrieve an existing connection to Snowflake 
+from snowflake.snowpark.context import get_active_session 
 
 # Write directly to the app
 st.title(f":factory: Manufacturing Sensor Anomaly Tracker")
