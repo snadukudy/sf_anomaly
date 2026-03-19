@@ -55,24 +55,6 @@ if 'IS_ANOMALY' in df.columns:
     st.write("Detected Outliers:")
     anomalies = df[df['IS_ANOMALY'] == True]
     st.dataframe(anomalies[['TS', 'Y', 'FORECAST', 'PERCENTILE']])
-
-    # Create an Altair Chart for better control over "Alert" colors
-    base = alt.Chart(df).encode(x='TS:T')
-
-    # Line for the Actual Sensor Value
-    line = base.mark_line(color='lightgrey').encode(y='Y:Q')
-
-    # Red circles for anomalies where IS_ANOMALY is true
-    points = base.mark_point(filled=True, size=50).encode(
-        y='Y:Q',
-        color=alt.condition(
-            alt.datum.IS_ANOMALY, 
-            alt.value('red'),      # If anomaly, red
-            alt.value('transparent') # Else, invisible
-        )
-    )
-    st.altair_chart(line + points, use_container_width=True)
-
     
     # Fetch the statistical view
     df_stats = session.table("ANOMALIES.PUBLIC.SENSOR_STATS_ANALYSIS").to_pandas()
