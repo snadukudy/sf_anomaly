@@ -1,9 +1,8 @@
 # Import python packages
 import streamlit as st
+from snowflake.snowpark.context import get_active_session
 import pandas as pd
 import altair as alt
-# Python import used to retrieve an existing connection to Snowflake 
-from snowflake.snowpark.context import get_active_session 
 
 # Write directly to the app
 st.title(f":factory: Manufacturing Sensor Anomaly Tracker")
@@ -42,19 +41,20 @@ df.columns = [col.replace('"', '') for col in df.columns]
 if 'IS_ANOMALY' in df.columns:
     df['IS_ANOMALY'] = df['IS_ANOMALY'].astype(bool)
     # Visualization
-    st.subheader("Sensor Variance Over Time")
+    st.subheader("ML Anamoly Detection Model Results")
 
     # Metric summary
     col1, col2 = st.columns(2)
     col1.metric("Total Anomalies", len(df[df['IS_ANOMALY'] == True]))
-    col2.metric("Average Variance", f"{df['PERCENTILE'].mean():.2f}")
-    
+
     # Using a scatter chart to overlay anomalies on the trend line
     st.line_chart(data=df, x='TS', y=['TS', 'Y', 'FORECAST', 'LOWER_BOUND', 'UPPER_BOUND'])
     # Detailed data table
     st.write("Detected Outliers:")
     anomalies = df[df['IS_ANOMALY'] == True]
     st.dataframe(anomalies[['TS', 'Y', 'FORECAST', 'PERCENTILE']])
+
+    st.subheader("Statistical Process Control Analysis Results")
     
     # Fetch the statistical view
     df_stats = session.table("ANOMALIES.PUBLIC.SENSOR_STATS_ANALYSIS").to_pandas()
@@ -100,7 +100,3 @@ else:
     st.error("Column 'IS_ANOMALY' not found in the result set.")
     st.write("Columns actually returned:", df.columns.tolist())
     st.write("Preview of data (first 5 rows):", df.head())
-
-
-
-
